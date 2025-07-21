@@ -42,3 +42,14 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+// INDEX ROUTE - Show all cars
+app.get('/cars', async (req, res) => {
+    try {
+        const cars = await Car.find();
+        res.render('cars/index', { cars });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+

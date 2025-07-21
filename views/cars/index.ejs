@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Cars</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <%- include('partials/nav') %>
+
+    <div class="container">
+        <h1>🚗 All Cars</h1>
+       
+        <% if (cars.length === 0) { %>
+      <p>No cars available.</p>
+    <% } %>
+
+    <%- cars.forEach(car => { %>
+        <div class="card>
+            <a href="/cars/<%= car._id %>">
+          <strong><%= car.year %> <%= car.make %> <%= car.model %></strong>
+        </a><br>
+        Color: <%= car.color || 'Unknown' %><br>
+        Available: <%= car.isAvailable ? 'Yes' : 'No' %><br>
+        <!-- Delete button -->
+         <button class="btn delete" type="button" onclick="openDeleteModal('<%= car._id %>')">Delete</button>
+        <!-- Delete Modal -->
+        <div id="modal-<%= car._id %>" class="delete-modal">
+          <div class="delete-modal-content">
+            <p>Delete this car?</p>
+            <form action="/cars/<%= car._id %>?_method=DELETE" method="POST" style="display: inline;">
+              <button class="btn delete" type="submit">Yes</button>
+            </form>
+            <button class="btn" onclick="closeDeleteModal('<%= car._id %>')">No</button>
+          </div>
+        </div>
+        <!-- Edit button -->
+        <a href="/cars/<%= car._id %>/edit">
+          <button class="btn edit">Edit</button>
+        </a> 
+      </div>
+    <% }); %>
+  </div>
+        </body>
+</html>
