@@ -53,3 +53,21 @@ app.get('/cars', async (req, res) => {
     }
 });
 
+// NEW ROUTE - Show form to create a new car
+app.get('/cars/new', (req, res) => {
+    res.render('cars/new');
+});
+
+// CREATE ROUTE - Add a new car to the database
+app.post('/cars', async (req, res) => {
+  try {
+    // Checkbox sends "on" if checked, so convert it to boolean
+    req.body.isAvailable = req.body.isAvailable === 'on';
+
+    await Car.create(req.body); // Create new car with form data
+    res.redirect('/cars');      // Redirect to index page
+  } catch (err) {
+    console.error(err);
+    res.send('Error creating car');
+  }
+});
