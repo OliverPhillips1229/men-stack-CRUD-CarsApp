@@ -82,3 +82,43 @@ app.get('/cars/:id', async (req, res) => {
     res.send('Error showing car details');
   }
 });
+
+// EDIT ROUTE - Show form to edit an existing car
+app.get('/cars/:id/edit', async (req, res) => {
+  try {
+    const car = await Car.findById(req.params.id);
+    res.render('cars/edit', { car });
+  } catch (err) {
+    console.error(err);
+    res.send('Error loading edit form');
+  }
+});
+
+// UPDATE ROUTE - Handle form submission for updating a car
+app.put('/cars/:id', async (req, res) => {
+  try {
+    req.body.isAvailable = req.body.isAvailable === 'on';
+    await Car.findByIdAndUpdate(req.params.id, req.body);
+    res.redirect(`/cars/${req.params.id}`);
+  } catch (err) {
+    console.error(err);
+    res.send('Error updating car');
+  }
+});
+
+// DELETE ROUTE - Delete a car
+app.delete('/cars/:id', async (req, res) => {
+  try {
+    await Car.findByIdAndDelete(req.params.id);
+    res.redirect('/cars');
+  } catch (err) {
+    console.error(err);
+    res.send('Error deleting car');
+  }
+});
+
+// ---------- Start Server ----------
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
+});

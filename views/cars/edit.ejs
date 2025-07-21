@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit <%= car.make %>
+            <%= car.model %>
+    </title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <%- include('../partials/nav') %>
+        <div class="container">
+            <h1>Edit <%= car.year %>
+                    <%= car.make %>
+                        <%= car.model %>
+            </h1>
+            <form action="/cars/<%= car._id %>?_method=PUT" method="POST">
+                <label for="make">Make:</label>
+                <input type="text" id="make" name="make" value="<%= car.make %>" required>
+                <label for="model">Model:</label>
+                <input type="text" id="model" name="model" value="<%= car.model %>" required>
+                <label for="year">Year:</label>
+                <input type="number" id="year" name="year" value="<%= car.year %>" required>
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color" value="<%= car.color %>">
+                <label for="isAvailable">Available:</label>
+                <input type="checkbox" id="isAvailable" name="isAvailable" <%=car.isAvailable ? 'checked' : '' %>>
+                <br><br>
+                <button class="btn" type="submit">Update Car</button>
+            </form>
+        </div>
+        <script src="/script.js"></script>
+</body>
+
+</html>
