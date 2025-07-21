@@ -45,8 +45,8 @@ app.get('/', (req, res) => {
 // INDEX ROUTE - Show all cars
 app.get('/cars', async (req, res) => {
     try {
-        const cars = await Car.find();
-        res.render('cars/index', { cars });
+        const cars = await Car.find(); // Fetch all cars from DB
+        res.render('cars/index', { cars }); // Render them
     } catch (err) {
         console.error(err);
         res.status(500).send('Server Error');
@@ -55,7 +55,7 @@ app.get('/cars', async (req, res) => {
 
 // NEW ROUTE - Show form to create a new car
 app.get('/cars/new', (req, res) => {
-    res.render('cars/new');
+    res.render('cars/new'); // Just renders the form
 });
 
 // CREATE ROUTE - Add a new car to the database
@@ -69,5 +69,16 @@ app.post('/cars', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.send('Error creating car');
+  }
+});
+
+// SHOW ROUTE - Show details of one car
+app.get('/cars/:id', async (req, res) => {
+  try {
+    const car = await Car.findById(req.params.id); // Find car by ID
+    res.render('cars/show', { car });              // Render the show view
+  } catch (err) {
+    console.error(err);
+    res.send('Error showing car details');
   }
 });
