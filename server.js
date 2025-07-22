@@ -22,17 +22,25 @@ app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
 // Set EJS as the view engine 
-app.set('view engine', 'ejs');
+app.set('view engine', 'ejs'); 
+// not needed, if you are rendering index.ejs dont need this!
+// uses index, instead of index.ejs 
 
 // ---------- Database Connection ----------
 // Connect to MongoDB using Mongoose
 mongoose.connect(process.env.MONGO_URI);
 
 // Confirm connection
+// only connects ONE TIME
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
+// use this instead!
+// consistantly checking the DB
+// mongoose.connect.on('connected', () => {
+//  console.log('Connected to MongoDB');
+// });
 
 // ---------- Routes ----------
 // Home route
