@@ -3,30 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>
-        <%= car.make %>
-            <%= car.model %> Details
-    </title>
+    <title><%= car.make %> <%= car.model %> Details</title>
     <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
     <%- include('../partials/nav') %>
-        <div class="container">
-            <h1>
-                <%= car.year %>
-                    <%= car.make %>
-                        <%= car.model %>
-            </h1>
-            <p><strong>Color:</strong>
-                <%= car.color || 'Unknown' %>
-            </p>
-            <p><strong>Available:</strong>
-                <%= car.isAvailable ? 'Yes' : 'No' %>
-            </p>
-            <a href="/cars/<%= car._id %>/edit" class="btn">Edit this Car</a>
-        </div>
-        <script src="/script.js"></script>
+
+    <div class="container">
+        <h1><%= car.year %> <%= car.make %> <%= car.model %></h1>
+
+        <p><strong>Color:</strong> <%= car.color || 'Unknown' %></p>
+        <p><strong>Available:</strong> <%= car.isAvailable ? 'Yes' : 'No' %></p>
+
+        <a href="/cars/<%= car._id %>/edit" class="btn">Edit this Car</a>
+    </div>
+
+    <script src="/script.js"></script>
 </body>
 
 </html>

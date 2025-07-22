@@ -26,15 +26,13 @@ app.set('view engine', 'ejs');
 
 // ---------- Database Connection ----------
 // Connect to MongoDB using Mongoose
-mongoose.connection(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI);
 
 // Confirm connection
 mongoose.connection.once('open', () => {
-    console.log('Connected to MongoDB');
+  console.log('Connected to MongoDB');
 });
+
 
 // ---------- Routes ----------
 // Home route

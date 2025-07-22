@@ -11,11 +11,21 @@ function toggleNav() {
 // Opens a delete confirmation modal for a specific item
 function openDeleteModal(id) {
   // Find the modal element with the ID `modal-${id}` and make it visible
-  document.getElementById(`modal-${id}`).style.display = 'block';
+  const modal = document.getElementById(`modal-${id}`);
+  if (modal) {
+    modal.style.display = 'block';
+  } else {
+    console.error(`Modal with ID modal-${id} not found`);
+  }
 }
 
 // Closes the delete confirmation modal for a specific item
 function closeDeleteModal(id) {
   // Find the modal element with the ID `modal-${id}` and hide it
-  document.getElementById(`modal-${id}`).style.display = 'none';
+  const modal = document.getElementById(`modal-${id}`);
+  if (modal) {
+    modal.style.display = 'none';
+  } else {
+    console.error(`Modal with ID modal-${id} not found`);
+  }
 }
