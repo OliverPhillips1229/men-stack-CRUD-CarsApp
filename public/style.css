@@ -137,14 +137,27 @@ a:hover {
 .delete-modal-content {
   background-color: #fff;
   margin: 15% auto;
-  padding: 20px 30px;
+  padding: 30px;
   border: 1px solid #ccc;
-  width: 300px;
+  width: 320px;
   text-align: center;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   animation: fadeIn 0.3s ease-in-out;
 }
+
+/* Add spacing between paragraph and buttons */
+.delete-modal-content p {
+  margin-bottom: 20px;
+}
+
+/* Align Yes/No buttons side-by-side and center them */
+.delete-modal-content .btn {
+  display: inline-block;
+  min-width: 80px;
+  margin: 0 10px;
+}
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
